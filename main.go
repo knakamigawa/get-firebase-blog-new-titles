@@ -43,12 +43,11 @@ func main() {
 
 	if len(collection) > 0 {
 		for _, line := range collection {
-			fmt.Println(line)
 			res, err := aiClient.Request(line)
 			if err != nil {
 				log.Fatal(err)
 			}
-			fmt.Println(res)
+			fmt.Printf("%s\n  -> 原文(%s)\n", res, line)
 		}
 	}
 }

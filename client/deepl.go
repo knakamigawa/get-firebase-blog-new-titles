@@ -2,6 +2,7 @@ package client
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -18,6 +19,9 @@ type ApiClient struct{}
 
 func (c ApiClient) Request(inputText string) (string, error) {
 	key := os.Getenv("API_KEY")
+	if key == "" {
+		return "", errors.New("API_KEY is not set")
+	}
 	sourceLang := "EN"
 	targetLang := "JA"
 
